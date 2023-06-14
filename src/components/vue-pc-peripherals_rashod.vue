@@ -1,0 +1,50 @@
+<template>
+  <div class="forms forms-pc-peripherals">
+      <span class="covers">Компьютерная переферия и рассходный материал</span>
+      <div class="covers_forms">
+          <div class="colums_flex">
+            <span>Переферия ПК</span>
+            <div class="forms_area">
+              <input class="forms_style" type="text">
+              <button class="button_main">Добавить</button>
+            </div>
+            <div>a02</div>
+            <span class="selected_items">123</span>
+          </div>
+
+         <div class="colums_flex">
+            <span>Бумага А4, краска</span>
+            <div class="forms_area">
+              <input class="forms_style" type="text">
+              <button class="button_main">Добавить</button>
+            </div>
+            <div>a02</div>
+            <span class="selected_items">123</span>
+          </div>
+
+          <div class="colums_flex">
+            <span>Принтер, картриджы</span>
+            <div class="forms_area">
+              <input class="forms_style" type="text">
+              <button class="button_main">Добавить</button>
+            </div>
+            <div>a02</div>
+            <span class="selected_items">123</span>
+          </div>
+      </div>
+    </div>
+</template>
+
+<script>
+export default {
+    name: 'PcPeripherals',
+  data () {
+    return {
+    }
+  }
+}
+</script>
+
+<style src="../app.css">
+
+</style>

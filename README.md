@@ -1,4 +1,4 @@
-# shop-items
+# web-store-sec
 
 ## Project setup
 ```

@@ -37,11 +37,11 @@
         <div class="selected-items_wrap">
           <span
             class="selected_items"
-            v-for="(glass, idx) in glassListSamsung"
-            :key="idx"
+            v-for="(glass, index) in glassListSamsung"
+            :key="index"
             :glass="glass"
-            :index="idx + 1"
-            >{{ glass }}
+            :index="index + 1"
+            ><span class="SelectedItems" @click="() => RemoveFromCartSamsung(index)">{{ glass }}</span>
           </span>
         </div>
         <button
@@ -83,11 +83,11 @@
         <div class="selected-items_wrap">
           <span
             class="selected_items"
-            v-for="(glass, idx) in glassListIphone"
-            :key="idx"
+            v-for="(glass, index) in glassListIphone"
+            :key="index"
             :glass="glass"
-            :index="idx + 1"
-            >{{ glass }}
+            :index="index + 1"
+            ><span class="SelectedItems" @click="() => RemoveFromCartIphone(index)">{{ glass }}</span>
           </span>
         </div>
         <button
@@ -130,11 +130,11 @@
         <div class="selected-items_wrap">
           <span
             class="selected_items"
-            v-for="(glass, idx) in glassListRedmi"
-            :key="idx"
+            v-for="(glass, index) in glassListRedmi"
+            :key="index"
             :glass="glass"
-            :index="idx + 1"
-            >{{ glass }}
+            :index="index + 1"
+            ><span class="SelectedItems" @click="() => RemoveFromCartRedmi(index)">{{ glass }}</span>
           </span>
         </div>
         <button
@@ -277,6 +277,26 @@ export default {
       (this.glassListRedmi = []),
         localStorage.removeItem("redmiGlassLocalStorage");
     },
+
+    // DELETE SINGLE ELEMENT
+
+
+    RemoveFromCartRedmi(index) {
+      this.glassListRedmi.splice(index, 1);
+      this.$store.commit("SET_GLASS_LIST_REDMI", this.glassListRedmi);
+    },
+
+    RemoveFromCartIphone(index) {
+      this.glassListIphone.splice(index, 1);
+      this.$store.commit("SET_GLASS_LIST_IPHONE", this.glassListIphone);
+    },
+
+    RemoveFromCartSamsung(index) {
+      this.glassListSamsung.splice(index, 1);
+      this.$store.commit("SET_GLASS_LIST_SAMSUNG", this.glassListSamsung);
+    }
+
+
   },
 };
 </script>

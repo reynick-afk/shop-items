@@ -6,25 +6,25 @@
    <span>Добавьте товар в списки для закупа</span>
     </div>
 
+  <div class="wrapper_box">
+  
+  <CoversItems class="hr_line"/>
+    
+  <SafetyGlass class="hr_line"/>
+    
+  <PcPeripherals class="hr_line"/>
+ 
+  <WiresAcamulators class="hr_line"/>
+ 
+  <ChargingDevices class="hr_line"/>
 
-    <hr>
-  <CoversItems />
-    <hr>
-  <SafetyGlass />
-    <hr>
-  <PcPeripherals />
-    <hr>
-  <WiresAcamulators />
-    <hr>
-  <ChargingDevices />
-    <hr>
-  <AppliancesShop />
-    <hr>
-  <MalePeriphery />
-    <hr>
-  <DifferentProducts />
-    <hr>
+  <AppliancesShop class="hr_line"/>
 
+  <MalePeriphery class="hr_line"/>
+
+  <DifferentProducts class="hr_line"/>
+   
+</div>
 
 
 
@@ -44,7 +44,6 @@ import DifferentProducts from '../components/vue-different-products.vue'
 
 
 export default {
-  props: ["covers", "index"],
   name: 'HomeView',
   components: {
     CoversItems,
@@ -61,29 +60,28 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-      $font_size: 30px;
+    $font_size: 30px;
 
 
   .home{
-    max-height: 1000vh;
-    max-width: 1000vw;
-  };
+    text-align: center;
+  }
+
+  .wrapper_box{
+    padding: 0 5% 0 5%;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+
 
   .header_home_page{
     display: flex;
     flex-direction: column;
     margin: 2%;
     font-size: $font-size;
-  };
-
-  .forms_info{
-    margin: 1%;
   }
 
-  .forms{
-    margin-top: 5%;
-    margin-bottom: 5%;
-  }
 
   .covers{
     font-size: $font-size;
@@ -106,6 +104,12 @@ export default {
     display: flex;
     justify-content: space-around;
     margin: 10px;
+  }
+
+  .hr_line{
+    border: 1px solid rgb(110, 110, 110);
+    box-shadow: 10px 10px 10px rgba(0,0,0,.15);
+    padding: 2%;
   }
 
 

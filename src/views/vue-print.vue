@@ -1,7 +1,7 @@
 <!-- eslint-disable no-mixed-spaces-and-tabs -->
 <template>
-  <div id="app">
-    
+  <div id="print">
+    <div id="page">
     <table class="iksweb">
 	<tbody>
 		<tr>
@@ -174,12 +174,12 @@
 			</td>
 		</tr>
 	</tbody>
+	
 </table>
-	<span>
-		<button class="printAll" @click="printAll">Расспечатать</button>
-
-	</span>
+<button class="printAll" @click="printAll">Расспечатать</button>
 </div>
+</div>
+
 </template>
 
 
@@ -414,84 +414,19 @@ export default {
 
 
 
-
 	methods:{
 		printAll(){
-			window.print();
-			return false;
-		},
-		
-	
-	}
-  
+      window.print()
+    }
 
+	},
+		
 }
 </script>
 
 
-<style lang="css">
-
-.td_max_Width{
-	margin-right: 4px;
-	display: inline-block;
-}
-
-.catalog{
-	font-weight: bold;
-}
-
-.printAll{
-	background: #0c3eaaec;
-      border-radius: 6px;
-      color: whitesmoke;
-      cursor: pointer;
-      min-width: 200px;
-      min-height: 40px;
-	padding: 5px;
-	margin: 20px;
-}
-
-  .app{
-    height: 200px;
-  }
-
-    table.iksweb{
-  height: 200px;
-  text-decoration: none;
-  border-collapse:collapse;
-  width:100%;
-  text-align:center;
-
-}
-
-@media print{
-	.printAll{
-		display: none;
-	}
-}
-
-@media screen and (min-width: 320px) and (max-width: 640px) {
-	.td_max_Width{
-		font-size: 8px;
-		padding: 2px;
-	}
-
-}
-
-
-
-table.iksweb {
-	table-layout: fixed;
-	height: 200px;
-	margin-top: 20px;
-	}
-
-table.iksweb td.catalog{font-size:12px; height: 10px;}
-table.iksweb th{font-weight:normal;font-size:14px; color:#ffffff;background-color:#354251;}
-table.iksweb td{font-size:10px;color:#354251;}
-table.iksweb td,table.iksweb th{white-space:normal;padding:10px 3px;vertical-align: middle;border: 1px solid #354251;}
-table.iksweb tr:hover{background-color:#f9fafb}
-table.iksweb tr:hover td{color:#354251;cursor:default;}
+<style>
+@import "../assets/syle_print_page.css";
 
 
 </style>

@@ -6,6 +6,7 @@ import store from './store'
 import router from './router'
 import './assets/tailwind.css'
 import './assets/__vars.scss'
+import './app.css'
 
 export const EventBus = new Vue();
 

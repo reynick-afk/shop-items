@@ -14,8 +14,9 @@
   }
 
   .forms{
-    margin-top: 5%;
-    margin-bottom: 5%;
+    margin-bottom: 3%;
+    border: 1px silid black;
+    
   }
 
   .covers{

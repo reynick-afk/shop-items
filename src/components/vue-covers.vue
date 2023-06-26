@@ -38,11 +38,11 @@
         <div class="selected-items_wrap">
           <span
             class="selected_items"
-            v-for="(cover, idx) in coversListSamsung"
-            :key="idx"
+            v-for="(cover, index) in coversListSamsung"
+            :key="index"
             :covers="cover"
-            :index="idx + 1"
-            >{{ cover }}
+            :index="index + 1"
+            ><span class="SelectedItems" @click="() => RemoveFromCartSamsung(index)">{{ cover }}</span>
           </span>
         </div>
         <button
@@ -85,11 +85,12 @@
         <div class="selected-items_wrap">
           <span
             class="selected_items"
-            v-for="(cover, idx) in coversListIphone"
-            :key="idx"
+            v-for="(cover, index) in coversListIphone"
+            :key="index"
             :covers="cover"
-            :index="idx + 1"
-            >{{ cover }}</span>
+            :index="index + 1"
+            ><span class="SelectedItems" @click="() => RemoveFromCartIphone(index)">{{ cover }}</span>
+            </span>
         </div>
         <button
           class="button_main marginXS paddingXS"
@@ -131,12 +132,13 @@
         <span>Добавленные элементы:</span>
         <div class="selected-items_wrap">
           <span
+            
             class="selected_items"
-            v-for="(cover, idx) in coversListRedmi"
-            :key="idx"
+            v-for="(cover, index) in coversListRedmi"
+            :key="index"
             :covers="cover"
-            :index="idx + 1"
-            >{{ cover }}
+            :index="index + 1"
+            ><span class="SelectedItems" @click="() => RemoveFromCartRedmi(index)">{{ cover }}</span>
           </span>
         </div>
         <button
@@ -280,6 +282,26 @@ export default {
       (this.coversListRedmi = []),
         localStorage.removeItem("redmiCoversLocalStorage");
     },
+
+
+    // DELETE SINGLE ELEMENT
+
+
+    RemoveFromCartRedmi(index) {
+      this.coversListRedmi.splice(index, 1);
+      this.$store.commit("SET_COVER_LIST_REDMI", this.coversListRedmi);
+    },
+
+    RemoveFromCartIphone(index) {
+      this.coversListIphone.splice(index, 1);
+      this.$store.commit("SET_COVER_LIST_IPHONE", this.coversListIphone);
+    },
+
+    RemoveFromCartSamsung(index) {
+      this.coversListSamsung.splice(index, 1);
+      this.$store.commit("SET_COVER_LIST_SAMSUNG", this.coversListSamsung);
+    }
+
   },
 };
 </script>
@@ -289,10 +311,19 @@ export default {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
-  max-width: 300px;
 }
 
+.SelectedItems{
+  padding: 5px 10px;
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 12px;
 
+}
+.SelectedItems:hover{
+   outline: 2px solid red;
+  outline-offset: 2px;
+}
 
 @media screen and (min-width: 320px) and (max-width: 600px) {
   .covers_forms{

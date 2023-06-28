@@ -1,0 +1,129 @@
+
+#print{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#page{
+	display: flex;
+    flex-direction: column;
+	width: 210mm;
+	min-height: 247mm;
+    padding: 10mm;
+    border: 1px #D3D3D3 solid;
+    border-radius: 5px;
+    background: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+	align-items: center;
+}
+
+
+
+table.iksweb{
+	text-decoration: none;
+	border-collapse:collapse;
+	text-align:center;
+	table-layout: fixed;
+	margin-top: 10px;
+	width: 100%;
+}
+
+table.iksweb td.catalog{font-size:12px;}
+table.iksweb th{font-weight:normal;font-size:14px; color:#ffffff;background-color:#354251;}
+table.iksweb td{font-size:10px;color:#354251;}
+table.iksweb td,table.iksweb th{white-space:normal;padding:8px 3px;vertical-align: middle;border: 1px solid #354251;}
+table.iksweb tr:hover{background-color:#f9fafb}
+table.iksweb tr:hover td{color:#354251;cursor:default;}
+
+
+
+.td_max_Width{
+	margin-right: 5px;
+	display: inline-block;
+}
+
+.catalog{
+	font-weight: bold;
+}
+
+.printButton{
+  margin-right: 10px;
+	background: #0c3eaaec;
+    border-radius: 6px;
+    color: whitesmoke;
+    cursor: pointer;
+    width: 200px;
+    height: 40px;
+	justify-content: center;
+	margin-top: 20px; 
+}
+
+.green{
+  background-color: green;
+}
+
+.red{
+  background-color: red;
+}
+
+@media print{
+    * {
+        margin: 0;
+        padding: 0 !important;
+      }
+      
+      body {
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      table.iksweb td{
+        height: 38px;
+      }
+      
+      .td_max_Width{
+        margin-right: 4px;
+      }
+
+	.printButton{
+		display: none;
+	}
+
+	#print {
+        width: 210mm;
+        height: 297mm;        
+        }
+
+
+    .page {
+        margin: 0;
+        border: initial;
+        border-radius: initial;
+        width: initial;
+        min-height: initial;
+        box-shadow: initial;
+        background: initial;
+        page-break-after: always;
+        }
+}
+
+@media screen and (min-width: 320px) and (max-width: 640px) {
+	.td_max_Width{
+		font-size: 8px;
+		padding: 2px;
+	}
+
+}
+
+@media screen and (min-width: 320px) and (max-width: 1440px) {
+	#page{
+    width: 50%;
+  }
+
+  .td_max_Width{
+    font-size: 10px;
+    font-weight: bolder;
+  }
+
+}

@@ -70,7 +70,7 @@ export default {
   .wrapper_box{
     padding: 0 5% 0 5%;
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(1, auto);
   }
 
 
@@ -130,15 +130,6 @@ export default {
   .button_main:hover{
     background-color: #008CBA;
       color: white;
-}
-
-
-/// MEDIA
-// SMALL TELEPHONE
-@media screen and (min-width: 320px) and (max-width: 1250px) {
-  .covers_forms{
-    grid-template-columns: repeat(1, 1fr);
-  }
 }
 
 

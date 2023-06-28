@@ -2,7 +2,7 @@
 <template>
   <div id="print">
     <div id="page">
-    <table class="iksweb">
+    <table ref="download_page" class="iksweb">
 	<tbody>
 		<tr>
 			<td class="catalog main-container" colspan="2">Закупочный лист</td>
@@ -176,7 +176,11 @@
 	</tbody>
 	
 </table>
-<button class="printAll" @click="printAll">Расспечатать</button>
+<div>
+<button class="printButton green" @click="printAll">Расспечатать</button>
+<button class="printButton" @click="exportToPDF">Скачать</button>
+<button class="printButton red" @click="deleteAll">Удалить все</button>
+</div>
 </div>
 </div>
 
@@ -185,6 +189,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import html2pdf from 'html2pdf.js'
 
 export default {
 
@@ -417,10 +422,58 @@ export default {
 	methods:{
 		printAll(){
       window.print()
-    }
+    },
+	
+	exportToPDF() {
+      const element = this.$refs.download_page
+
+      html2pdf()
+        .set({
+          filename: 'export.pdf',
+          html2canvas: { scale: 2 },
+          jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        })
+        .from(element)
+        .save('export.pdf')
+    },
+
+	deleteAll(){
+		this.CoversTdSamsung = [],
+		this.CoversTdIphone = [],
+		this.CoversTdRedmi = [],
+
+		this.GlassTdSamsung = [],
+		this.GlassTdIphone = [],
+		this.GlassTdRedmi = [],
+
+		this.PeripheryTdFirst = [],
+		this.PeripheryTdSecond = [],
+		this.PeripheryTdThree = [],
+
+		this.WiresTdFirst = [],
+		this.WiresTdSecond = [],
+		this.WiresTdThree = [],
+
+		this.AppliancesTdFirst = [],
+		this.AppliancesTdSecond = [],
+		this.AppliancesTdThree = [],
+
+		this.MaleTdFirst = [],
+		this.MaleTdSecond = [],
+		this.MaleTdThree = [],
+
+		this.DifferentTdFirst = [],
+		this.DifferentTdSecond = [],
+		this.DifferentTdThree = [],
+
+		this.ChargingTdFirst = [],
+		this.ChargingTdSecond = [],
+		this.ChargingTdThree = []
+
+
 
 	},
-		
+	}	
 }
 </script>
 

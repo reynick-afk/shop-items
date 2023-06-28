@@ -71,11 +71,13 @@
   color: white;
 }
 
+
+
 .selected_items{
   font-weight: bolder;
   border-radius: 12px;
   margin-top: 12px;
-
+  max-width: 50%;
   margin-bottom: 12px;
   font-size: 20px;
 }
@@ -130,3 +132,17 @@ input[type="text"]{
  label{
   cursor: pointer;
  }
+
+
+ @media screen and (min-width: 200px) and (max-width: 1450px) {
+  .covers_forms{
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .hr_line{
+    margin-right: 100px;
+    margin-left: 100px;
+  }
+  .selected-items_wrap{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

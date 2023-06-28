@@ -309,7 +309,7 @@ export default {
 <style lang="scss">
 .selected-items_wrap {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 10px;
 }
 
@@ -331,7 +331,7 @@ export default {
     font-size: 10px;
   }
  .colums_flex{
-  font-size: 65%;
+
  }
 }
 </style>

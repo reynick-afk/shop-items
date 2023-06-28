@@ -10,6 +10,7 @@
   "dependencies": {
     "core-js": "^3.8.3",
     "eslint-config-vue2-roboleary": "^0.4.1",
+    "html2pdf.js": "^0.10.1",
     "vue": "^2.6.14",
     "vue-router": "^3.5.1",
     "vuex": "^3.6.2"

@@ -1,0 +1,188 @@
+{ 
+    "Data":
+    {
+    "samsung": [
+    {
+    "index": 1,
+    "model": "S21"
+    },
+    {
+    "index": 2,
+    "model": "S Plus"
+    },
+    {
+    "index": 3,
+    "model": "S Ultra"
+    },
+    {
+    "index": 4,
+    "model": "S10"
+    },
+    {
+    "index": 5,
+    "model": "S10 Plus"
+    },
+    {
+    "index": 6,
+    "model": "S10e"
+    },
+    {
+    "index": 7,
+    "model": "S20"
+    },
+    {
+    "index": 8,
+    "model": "S20 Plus"
+    },
+    {
+    "index": 9,
+    "model": "S20 Ultra"
+    },
+    {
+    "index": 10,
+    "model": "S22"
+    },
+    {
+    "index": 11,
+    "model": "S22 Plus"
+    },
+    {
+    "index": 12,
+    "model": "S22 Ultra"
+    },
+    {
+    "index": 13,
+    "model": "A3"
+    },
+    {
+    "index": 14,
+    "model": "A5"
+    },
+    {
+    "index": 15,
+    "model": "A7"
+    },
+    {
+    "index": 16,
+    "model": "A8"
+    },
+    {
+    "index": 17,
+    "model": "A9"
+    },
+    {
+    "index": 18,
+    "model": "A10"
+    },
+    {
+    "index": 19,
+    "model": "A11"
+    },
+    {
+    "index": 20,
+    "model": "A12"
+    },
+    {
+    "index": 21,
+    "model": "A13"
+    },
+    {
+    "index": 22,
+    "model": "A14"
+    },
+    {
+    "index": 23,
+    "model": "A20"
+    },
+    {
+    "index": 24,
+    "model": "A21"
+    },
+    {
+    "index": 25,
+    "model": "A21S"
+    },
+    {
+    "index": 26,
+    "model": "A22"
+    },
+    {
+    "index": 27,
+    "model": "A23"
+    },
+    {
+    "index": 28,
+    "model": "A30"
+    },
+    {
+    "index": 29,
+    "model": "A31"
+    },
+    {
+    "index": 30,
+    "model": "A32"
+    },
+    {
+    "index": 31,
+    "model": "A33"
+    },
+    {
+    "index": 32,
+    "model": "A34"
+    },
+    {
+    "index": 33,
+    "model": "A40"
+    },
+    {
+    "index": 34,
+    "model": "A50"
+    },
+    {
+    "index": 35,
+    "model": "A51"
+    },
+    {
+    "index": 36,
+    "model": "A52"
+    },
+    {
+    "index": 37,
+    "model": "A53"
+    },
+    {
+    "index": 90,
+    "model": "A54"
+    },
+    {
+    "index": 38,
+    "model": "A60"
+    },
+    {
+    "index": 39,
+    "model": "A70"
+    },
+    {
+    "index": 40,
+    "model": "A71"
+    },
+    {
+    "index": 41,
+    "model": "A72"
+    },
+    {
+    "index": 42,
+    "model": "A73"
+    },
+    {
+    "index": 43,
+    "model": "A80"
+    },
+    {
+    "index": 44,
+    "model": "A90 5G"
+    }
+    ]
+
+    } 
+}

@@ -431,6 +431,7 @@ export default {
         .set({
           filename: 'export.pdf',
           html2canvas: { scale: 2 },
+          pagebreak: { mode: ['avoid-all', 'css', 'legacy'] },
           jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
         })
         .from(element)
@@ -439,39 +440,60 @@ export default {
 
 	deleteAll(){
 		this.CoversTdSamsung = [],
+		localStorage.removeItem("samsungCoversLocalStorage");
 		this.CoversTdIphone = [],
+		localStorage.removeItem("iphoneCoversLocalStorage");
 		this.CoversTdRedmi = [],
+		localStorage.removeItem("redmiCoversLocalStorage");
 
 		this.GlassTdSamsung = [],
+		localStorage.removeItem("samsungGlassLocalStorage");
 		this.GlassTdIphone = [],
+		localStorage.removeItem("iphoneGlassLocalStorage");
 		this.GlassTdRedmi = [],
+		localStorage.removeItem("redmiGlassLocalStorage");
 
 		this.PeripheryTdFirst = [],
+		localStorage.removeItem("firstPeripheryLocalStorage");
 		this.PeripheryTdSecond = [],
+		localStorage.removeItem("secondPeripheryLocalStorage");
 		this.PeripheryTdThree = [],
+		localStorage.removeItem("threePeripheryLocalStorage");
 
 		this.WiresTdFirst = [],
+		localStorage.removeItem("firstWiresLocalStorage");
 		this.WiresTdSecond = [],
+		localStorage.removeItem("secondWiresLocalStorage");
 		this.WiresTdThree = [],
+		localStorage.removeItem("threeWiresLocalStorage");
 
 		this.AppliancesTdFirst = [],
+		localStorage.removeItem("firstAppliancesLocalStorage");
 		this.AppliancesTdSecond = [],
+		localStorage.removeItem("secondAppliancesLocalStorage");
 		this.AppliancesTdThree = [],
+		localStorage.removeItem("threeAppliancesLocalStorage");
 
 		this.MaleTdFirst = [],
+		localStorage.removeItem("firstMaleLocalStorage");
 		this.MaleTdSecond = [],
+		localStorage.removeItem("secondMaleLocalStorage");
 		this.MaleTdThree = [],
+		localStorage.removeItem("threeMaleLocalStorage");
 
 		this.DifferentTdFirst = [],
+		localStorage.removeItem("firstDifferentLocalStorage");
 		this.DifferentTdSecond = [],
+		localStorage.removeItem("secondDifferentLocalStorage");
 		this.DifferentTdThree = [],
+		localStorage.removeItem("threeDifferentLocalStorage");
 
 		this.ChargingTdFirst = [],
+		localStorage.removeItem("firstChargingLocalStorage");
 		this.ChargingTdSecond = [],
-		this.ChargingTdThree = []
-
-
-
+		localStorage.removeItem("secondChargingLocalStorage");
+		this.ChargingTdThree = [],
+		localStorage.removeItem("threeChargingLocalStorage");
 	},
 	}	
 }

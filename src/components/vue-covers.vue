@@ -3,7 +3,6 @@
   <div class="forms">
     <span class="covers">Чехлы на телефон</span>
     <div class="covers_forms">
-     
       <!-- Samsung -->
       <div class="colums_flex">
         <span>Samsung</span>
@@ -19,20 +18,25 @@
             Добавить
           </button>
         </div>
-        <div>a02</div>
+
         <div v-if="emptyFormsSamsung">
           Пустое поле
           <button class="button_main" @click="emptyFormsSamsung = false">
             Убрать
           </button>
         </div>
+          <div >
+          <ul class="li-items_wrap li_style_none" v-if="filteredModelsSamsung.length && coversSamsung.trim() !== ''">
+              <li class="SelectedItems" v-for="model in filteredModelsSamsung" :key="model" @click="selectModelSamsung(model)">{{ model }}</li>
+            </ul>
+          </div>
 
         <div v-if="isDublicateCartFirst">
-              Дубликат
+          Дубликат
           <button class="button_main" @click="isDublicateCartFirst = false">
             Убрать
           </button>
-          </div>
+        </div>
 
         <span>Добавленные элементы:</span>
         <div class="selected-items_wrap">
@@ -42,7 +46,11 @@
             :key="index"
             :covers="cover"
             :index="index + 1"
-            ><span class="SelectedItems" @click="() => RemoveFromCartSamsung(index)">{{ cover }}</span>
+            ><span
+              class="SelectedItems"
+              @click="() => RemoveFromCartSamsung(index)"
+              >{{ cover }}</span
+            >
           </span>
         </div>
         <button
@@ -66,7 +74,9 @@
           />
           <button class="button_main" @click="AddToCartIphone">Добавить</button>
         </div>
-        <div>a02</div>
+        <ul class="li-items_wrap li_style_none" v-if="filteredModelsIphone.length && coversIphone.trim() !== ''">
+              <li class="SelectedItems" v-for="model in filteredModelsIphone" :key="model" @click="selectModelIphone(model)">{{ model }}</li>
+            </ul>
         <div v-if="emptyFormsIphone">
           Пустое поле
           <button class="button_main" @click="emptyFormsIphone = false">
@@ -75,11 +85,11 @@
         </div>
 
         <div v-if="isDublicateCartSecond">
-              Дубликат
+          Дубликат
           <button class="button_main" @click="isDublicateCartSecond = false">
             Убрать
           </button>
-          </div>
+        </div>
 
         <span>Добавленные элементы:</span>
         <div class="selected-items_wrap">
@@ -89,8 +99,12 @@
             :key="index"
             :covers="cover"
             :index="index + 1"
-            ><span class="SelectedItems" @click="() => RemoveFromCartIphone(index)">{{ cover }}</span>
-            </span>
+            ><span
+              class="SelectedItems"
+              @click="() => RemoveFromCartIphone(index)"
+              >{{ cover }}</span
+            >
+          </span>
         </div>
         <button
           class="button_main marginXS paddingXS"
@@ -99,8 +113,7 @@
           Удалить все
         </button>
       </div>
-      
-      
+
       <!-- Redmi -->
       <div class="colums_flex">
         <span>Redmi</span>
@@ -114,7 +127,9 @@
           />
           <button class="button_main" @click="AddToCartRedmi">Добавить</button>
         </div>
-        <div>a02</div>
+          <ul class="li-items_wrap li_style_none" v-if="filteredModelsRedmi.length && coversRedmi.trim() !== ''">
+              <li class="SelectedItems" v-for="model in filteredModelsRedmi" :key="model" @click="selectModelRedmi(model)">{{ model }}</li>
+            </ul>
         <div v-if="emptyFormsRedmi">
           Пустое поле
           <button class="button_main" @click="emptyFormsRedmi = false">
@@ -123,22 +138,25 @@
         </div>
 
         <div v-if="isDublicateCartThree">
-              Дубликат
+          Дубликат
           <button class="button_main" @click="isDublicateCartThree = false">
             Убрать
           </button>
-          </div>
+        </div>
 
         <span>Добавленные элементы:</span>
         <div class="selected-items_wrap">
           <span
-            
             class="selected_items"
             v-for="(cover, index) in coversListRedmi"
             :key="index"
             :covers="cover"
             :index="index + 1"
-            ><span class="SelectedItems" @click="() => RemoveFromCartRedmi(index)">{{ cover }}</span>
+            ><span
+              class="SelectedItems"
+              @click="() => RemoveFromCartRedmi(index)"
+              >{{ cover }}</span
+            >
           </span>
         </div>
         <button
@@ -154,10 +172,12 @@
 
 <script>
 import { mapMutations } from "vuex";
+import shopDataSamsung from "../data/shopSamsung.json";
+import shopDataIphone from "../data/shopIphone.json";
+import shopDataRedmi from "../data/shopRedmi.json";
 
 export default {
   name: "CoversItems",
-  components: {},
   data() {
     return {
       coversListSamsung: [],
@@ -176,6 +196,14 @@ export default {
       isDublicateCartFirst: false,
       isDublicateCartSecond: false,
       isDublicateCartThree: false,
+
+      allItems: [],
+      selectedModelIndex: {
+        samsung: -1,
+        // Add other brands' selectedModelIndex here if needed
+      },
+    
+    
     };
   },
 
@@ -210,61 +238,60 @@ export default {
     /// ADD ELEMENTS
     AddToCartSamsung() {
       let cover = this.coversSamsung;
-  if (cover === "") {
-    this.emptyFormsSamsung = true;
-  } else {
-    this.emptyFormsSamsung = false;
-    let coverUpperCase = this.coversSamsung.toUpperCase();
-    if (!this.coversListSamsung.includes(coverUpperCase)) {
-      this.coversListSamsung.push(coverUpperCase);
-      this.$store.commit("SET_COVER_LIST_SAMSUNG", this.coversListSamsung);
-      this.isDublicateCartFirst = false;
-    } else {
-      this.isDublicateCartFirst = true;
-    }
-    this.coversSamsung = "";
-    this.$refs.myRefCoversSamsung.focus();
-  }
+      if (cover === "") {
+        this.emptyFormsSamsung = true;
+      } else {
+        this.emptyFormsSamsung = false;
+        let coverUpperCase = this.coversSamsung.toUpperCase();
+        if (!this.coversListSamsung.includes(coverUpperCase)) {
+          this.coversListSamsung.push(coverUpperCase);
+          this.$store.commit("SET_COVER_LIST_SAMSUNG", this.coversListSamsung);
+          this.isDublicateCartFirst = false;
+        } else {
+          this.isDublicateCartFirst = true;
+        }
+        this.coversSamsung = "";
+        this.$refs.myRefCoversSamsung.focus();
+      }
     },
 
     AddToCartIphone() {
-      
-  let cover = this.coversIphone;
-  if (cover === "") {
-    this.emptyFormsIphone = true;
-  } else {
-    this.emptyFormsIphone = false;
-    let coverUpperCase = this.coversIphone.toUpperCase();
-    if (!this.coversListIphone.includes(coverUpperCase)) {
-      this.coversListIphone.push(coverUpperCase);
-      this.$store.commit("SET_COVER_LIST_IPHONE", this.coversListIphone);
-      this.isDublicateCartSecond = false;
-    } else {
-      this.isDublicateCartSecond = true;
-    }
-    this.coversIphone = "";
-    this.$refs.myRefCoversIphone.focus();
-  }
+      let cover = this.coversIphone;
+      if (cover === "") {
+        this.emptyFormsIphone = true;
+      } else {
+        this.emptyFormsIphone = false;
+        let coverUpperCase = this.coversIphone.toUpperCase();
+        if (!this.coversListIphone.includes(coverUpperCase)) {
+          this.coversListIphone.push(coverUpperCase);
+          this.$store.commit("SET_COVER_LIST_IPHONE", this.coversListIphone);
+          this.isDublicateCartSecond = false;
+        } else {
+          this.isDublicateCartSecond = true;
+        }
+        this.coversIphone = "";
+        this.$refs.myRefCoversIphone.focus();
+      }
     },
 
     AddToCartRedmi() {
-  let cover = this.coversRedmi;
-  if (cover === "") {
-    this.emptyFormsRedmi = true;
-  } else {
-    this.emptyFormsRedmi = false;
-    let coverUpperCase = this.coversRedmi.toUpperCase();
-    if (!this.coversListRedmi.includes(coverUpperCase)) {
-      this.coversListRedmi.push(coverUpperCase);
-      this.$store.commit("SET_COVER_LIST_REDMI", this.coversListRedmi);
-      this.isDublicateCartThree = false;
-    } else {
-      this.isDublicateCartThree = true;
-    }
-    this.coversRedmi = "";
-    this.$refs.myRefCoversRedmi.focus();
-  }
-},
+      let cover = this.coversRedmi;
+      if (cover === "") {
+        this.emptyFormsRedmi = true;
+      } else {
+        this.emptyFormsRedmi = false;
+        let coverUpperCase = this.coversRedmi.toUpperCase();
+        if (!this.coversListRedmi.includes(coverUpperCase)) {
+          this.coversListRedmi.push(coverUpperCase);
+          this.$store.commit("SET_COVER_LIST_REDMI", this.coversListRedmi);
+          this.isDublicateCartThree = false;
+        } else {
+          this.isDublicateCartThree = true;
+        }
+        this.coversRedmi = "";
+        this.$refs.myRefCoversRedmi.focus();
+      }
+    },
 
     // DELETE ALL ITEM FROM INPUT
 
@@ -283,9 +310,7 @@ export default {
         localStorage.removeItem("redmiCoversLocalStorage");
     },
 
-
     // DELETE SINGLE ELEMENT
-
 
     RemoveFromCartRedmi(index) {
       this.coversListRedmi.splice(index, 1);
@@ -300,9 +325,128 @@ export default {
     RemoveFromCartSamsung(index) {
       this.coversListSamsung.splice(index, 1);
       this.$store.commit("SET_COVER_LIST_SAMSUNG", this.coversListSamsung);
+    },
+
+  // ADD AUTOCOMPLATE
+
+  selectModelSamsung(model){
+    this.coversSamsung  = model
+      if (model === "") {
+        this.emptyFormsSamsung = true;
+      } else {
+        this.emptyFormsSamsung = false;
+        let coverUpperCase = this.coversSamsung.toUpperCase();
+        if (!this.coversListSamsung.includes(coverUpperCase)) {
+          this.coversListSamsung.push(coverUpperCase);
+          this.$store.commit("SET_COVER_LIST_SAMSUNG", this.coversListSamsung);
+          this.isDublicateCartFirst = false;
+        } else {
+          this.isDublicateCartFirst = true;
+        }
+        this.coversSamsung = "";
+        this.$refs.myRefCoversSamsung.focus();
+      }
+  },
+
+  selectModelIphone(model){
+    this.coversIphone  = model
+      if (model === ""){
+        this.emptyFormsIphone = true;
+      } else {
+        this.emptyFormsIphone = false;
+        let coverUpperCase = this.coversIphone.toUpperCase();
+        if (!this.coversListIphone.includes(coverUpperCase)) {
+          this.coversListIphone.push(coverUpperCase);
+          this.$store.commit("SET_COVER_LIST_IPHONE", this.coversListIphone);
+          this.isDublicateCartSecond = false;
+        } else {
+          this.isDublicateCartSecond = true;
+        }
+        this.coversIphone = "";
+        this.$refs.myRefCoversIphone.focus();
+      }},
+
+    selectModelRedmi(model){
+      this.coversRedmi  = model
+        if (model === ""){
+        this.emptyFormsRedmi = true;
+      } else {
+        this.emptyFormsRedmi = false;
+        let coverUpperCase = this.coversRedmi.toUpperCase();
+        if (!this.coversListRedmi.includes(coverUpperCase)) {
+          this.coversListRedmi.push(coverUpperCase);
+          this.$store.commit("SET_COVER_LIST_REDMI", this.coversListRedmi);
+          this.isDublicateCartThree = false;
+        } else {
+          this.isDublicateCartThree = true;
+        }
+        this.coversRedmi = "";
+        this.$refs.myRefCoversRedmi.focus();
+      }
     }
 
   },
+  computed: {
+     filteredModelsSamsung() {
+    const search = this.coversSamsung.toLowerCase();
+    const filtered = [];
+    
+    if (search.trim() !== '') {
+      for (const brand in shopDataSamsung.Data) {
+        const models = shopDataSamsung.Data[brand];
+        
+        for (const model of models) {
+          if (model.model.toLowerCase().includes(search)) {
+            filtered.push(model.model);
+          }
+        }
+      }
+    }
+    
+    return filtered;
+  },
+ 
+  filteredModelsIphone() {
+    const search = this.coversIphone.toLowerCase();
+    const filtered = [];
+    
+    if (search.trim() !== '') {
+      for (const brand in shopDataIphone.Data) {
+        const models = shopDataIphone.Data[brand];
+        
+        for (const model of models) {
+          if (model.model.toLowerCase().includes(search)) {
+            filtered.push(model.model);
+          }
+        }
+      }
+    }
+    
+    return filtered;
+  },
+filteredModelsRedmi() {
+    const search = this.coversRedmi.toLowerCase();
+    const filtered = [];
+    
+    if (search.trim() !== '') {
+      for (const brand in shopDataRedmi.Data) {
+        const models = shopDataRedmi.Data[brand];
+        
+        for (const model of models) {
+          if (model.model.toLowerCase().includes(search)) {
+            filtered.push(model.model);
+          }
+        }
+      }
+    }
+    
+    return filtered;
+  }
+
+
+  },
+
+
 };
 </script>
 
@@ -313,25 +457,21 @@ export default {
   gap: 10px;
 }
 
-.SelectedItems{
-  padding: 5px 10px;
+.SelectedItems {
+  padding: 5px 0px 5px;
   cursor: pointer;
-  border: 1px solid black;
-  border-radius: 12px;
-
+ border-bottom: 5px solid rgb(9, 206, 42);
 }
-.SelectedItems:hover{
-   outline: 2px solid red;
+.SelectedItems:hover {
+  border-bottom: 5px solid rgb(206, 9, 9);
   outline-offset: 2px;
+  transition: 0.5s;
 }
 
 @media screen and (min-width: 320px) and (max-width: 600px) {
-  .covers_forms{
+  .covers_forms {
     grid-template-columns: repeat(1, 1fr);
     font-size: 10px;
   }
- .colums_flex{
-
- }
 }
 </style>

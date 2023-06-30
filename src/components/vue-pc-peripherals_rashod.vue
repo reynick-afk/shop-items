@@ -18,7 +18,6 @@
             Добавить
           </button>
         </div>
-        <div>a02</div>
         <div v-if="emptyFormsFirst">
           Пустое поле
           <button class="button_main" @click="emptyFormsFirst = false">
@@ -36,11 +35,11 @@
         <div class="selected-items_wrap">
           <span
             class="selected_items"
-            v-for="(item, idx) in peripheryListFirst"
-            :key="idx"
+            v-for="(item, index) in peripheryListFirst"
+            :key="index"
             :items="item"
-            :index="idx + 1"
-            >{{ item }}
+            :index="index + 1"
+            ><span class="SelectedItems" @click="() => RemoveFromCartFirst(index)">{{ item }}</span>
           </span>
         </div>
         <button
@@ -66,7 +65,6 @@
             Добавить
           </button>
         </div>
-        <div>a02</div>
         <div v-if="emptyFormsSecond">
           Пустое поле
           <button class="button_main" @click="emptyFormsSecond = false">
@@ -84,11 +82,11 @@
         <div class="selected-items_wrap">
           <span
             class="selected_items"
-            v-for="(item, idx) in peripheryListSecond"
-            :key="idx"
+            v-for="(item, index) in peripheryListSecond"
+            :key="index"
             :items="item"
-            :index="idx + 1"
-            >{{ item }}
+            :index="index + 1"
+            ><span class="SelectedItems" @click="() => RemoveFromCartSecond(index)">{{ item }}</span>
           </span>
         </div>
         <button
@@ -115,7 +113,6 @@
             Добавить
           </button>
         </div>
-        <div>a02</div>
         <div v-if="emptyFormsThree">
           Пустое поле
           <button class="button_main" @click="emptyFormsThree = false">
@@ -133,11 +130,11 @@
         <div class="selected-items_wrap">
           <span
             class="selected_items"
-            v-for="(item, idx) in peripheryListThree"
-            :key="idx"
+            v-for="(item, index) in peripheryListThree"
+            :key="index"
             :items="item"
-            :index="idx + 1"
-            >{{ item }}
+            :index="index + 1"
+            ><span class="SelectedItems" @click="() => RemoveFromCartThree(index)">{{ item }}</span>
           </span>
         </div>
         <button
@@ -284,6 +281,24 @@ export default {
       (this.peripheryListThree = []),
         localStorage.removeItem("threePeripheryLocalStorage");
     },
+
+  // DELETE SINGLE ELEMENT
+
+      RemoveFromCartFirst(index) {
+      this.peripheryListFirst.splice(index, 1);
+      this.$store.commit("SET_PERIPHERY_LIST_FIRST", this.peripheryListFirst);
+    },
+
+    RemoveFromCartSecond(index) {
+      this.peripheryListSecond.splice(index, 1);
+      this.$store.commit("SET_PERIPHERY_LIST_SECOND", this.peripheryListSecond);
+    },
+
+    RemoveFromCartThree(index) {
+      this.peripheryListThree.splice(index, 1);
+      this.$store.commit("SET_PERIPHERY_LIST_THREE", this.peripheryListThree);
+    }
+
   },
 };
 </script>

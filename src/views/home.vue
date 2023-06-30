@@ -3,7 +3,7 @@
     <div class="header_home_page">
  
    <span class="forms_info">Формы заявок магазина Витязь</span>
-   <span>Добавьте товар в списки для закупа</span>
+   <span class="forms_info">Добавьте товар в списки для закупа</span>
     </div>
 
   <div class="wrapper_box">
@@ -24,6 +24,8 @@
 
   <DifferentProducts class="hr_line"/>
    
+
+
 </div>
 
 
@@ -43,6 +45,7 @@ import MalePeriphery from '../components/vue-male-periphery.vue'
 import DifferentProducts from '../components/vue-different-products.vue'
 
 
+
 export default {
   name: 'HomeView',
   components: {
@@ -54,8 +57,7 @@ export default {
     AppliancesShop,
     MalePeriphery,
     DifferentProducts,
-
-  }
+      }
 }
 </script>
 

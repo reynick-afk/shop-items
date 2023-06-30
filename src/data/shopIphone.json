@@ -1,0 +1,78 @@
+{ "Data":
+{
+    "iphone": [
+        {
+        "index": 1,
+        "model": "iPhone 13 Pro"
+        },
+        {
+        "index": 2,
+        "model": "iPhone 13"
+        },
+        {
+        "index": 3,
+        "model": "iPhone 13 Pro Max"
+        },
+        {
+        "index": 4,
+        "model": "iPhone 14 Pro Max"
+        },
+        {
+        "index": 5,
+        "model": "iPhone 14 Pro"
+        },
+        {
+        "index": 6,
+        "model": "iPhone 12 Pro Max"
+        },
+        {
+        "index": 7,
+        "model": "iPhone 12 Pro"
+        },
+        {
+        "index": 8,
+        "model": "iPhone 12"
+        },
+        {
+        "index": 9,
+        "model": "iPhone 12 mini"
+        },
+        {
+        "index": 10,
+        "model": "iPhone 11 Pro"
+        },
+        {
+        "index": 11,
+        "model": "iPhone 11 Pro Max"
+        },
+        {
+        "index": 12,
+        "model": "iPhone 11"
+        },
+        {
+        "index": 13,
+        "model": "iPhone XS"
+        },
+        {
+        "index": 14,
+        "model": "iPhone XS Max"
+        },
+        {
+        "index": 15,
+        "model": "iPhone XR"
+        },
+        {
+        "index": 16,
+        "model": "iPhone X"
+        },
+        {
+        "index": 17,
+        "model": "iPhone 8/7"
+        },
+        {
+        "index": 18,
+        "model": "iPhone 6/6S"
+        }
+        ]
+}
+}

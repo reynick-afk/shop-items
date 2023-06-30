@@ -18,7 +18,6 @@
             Добавить
           </button>
         </div>
-        <div>a02</div>
         <div v-if="emptyFormsFirst">
           Пустое поле
           <button class="button_main" @click="emptyFormsFirst = false">
@@ -36,11 +35,11 @@
         <div class="selected-items_wrap">
           <span
             class="selected_items"
-            v-for="(item, idx) in appliancesListFirst"
-            :key="idx"
+            v-for="(item, index) in appliancesListFirst"
+            :key="index"
             :items="item"
-            :index="idx + 1"
-            >{{ item }}
+            :index="index + 1"
+            ><span class="SelectedItems" @click="() => RemoveFromCartFirst(index)">{{ item }}</span>
           </span>
         </div>
         <button
@@ -66,7 +65,6 @@
             Добавить
           </button>
         </div>
-        <div>a02</div>
         <div v-if="emptyFormsSecond">
           Пустое поле
           <button class="button_main" @click="emptyFormsSecond = false">
@@ -84,11 +82,11 @@
         <div class="selected-items_wrap">
           <span
             class="selected_items"
-            v-for="(item, idx) in appliancesListSecond"
-            :key="idx"
+            v-for="(item, index) in appliancesListSecond"
+            :key="index"
             :items="item"
-            :index="idx + 1"
-            >{{ item }}
+            :index="index + 1"
+            ><span class="SelectedItems" @click="() => RemoveFromCartSecond(index)">{{ item }}</span>
           </span>
         </div>
         <button
@@ -115,7 +113,6 @@
             Добавить
           </button>
         </div>
-        <div>a02</div>
         <div v-if="emptyFormsThree">
           Пустое поле
           <button class="button_main" @click="emptyFormsThree = false">
@@ -133,11 +130,11 @@
         <div class="selected-items_wrap">
           <span
             class="selected_items"
-            v-for="(item, idx) in appliancesListThree"
-            :key="idx"
+            v-for="(item, index) in appliancesListThree"
+            :key="index"
             :items="item"
-            :index="idx + 1"
-            >{{ item }}
+            :index="index + 1"
+            ><span class="SelectedItems" @click="() => RemoveFromCartThree(index)">{{ item }}</span>
           </span>
         </div>
         <button
@@ -284,6 +281,24 @@ export default {
       (this.appliancesListThree = []),
         localStorage.removeItem("threeAppliancesLocalStorage");
     },
+
+  // DELETE SINGLE ELEMENT
+
+      RemoveFromCartFirst(index) {
+      this.appliancesListFirst.splice(index, 1);
+      this.$store.commit("SET_APPLIANCES_LIST_FIRST", this.appliancesListFirst);
+    },
+
+    RemoveFromCartSecond(index) {
+      this.appliancesListSecond.splice(index, 1);
+      this.$store.commit("SET_APPLIANCES_LIST_SECOND", this.appliancesListSecond);
+    },
+
+    RemoveFromCartThree(index) {
+      this.appliancesListThree.splice(index, 1);
+      this.$store.commit("SET_APPLIANCES_LIST_THREE", this.appliancesListThree);
+    }
+
   },
 };
 </script>

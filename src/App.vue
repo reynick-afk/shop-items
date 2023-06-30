@@ -25,24 +25,20 @@
   display: grid;
   grid-template-columns: auto 1fr;
   background:rgb(240, 245, 245);
-  height: 100%;
 
 nav{
-  height: 100%;
+
 }
 
-		@media (max-width: 1024px) {
 
-		}
-    @media print{
+
+}
+
+ @media print{
       nav{
         display: none;
       }
     }
-
-}
-
-
 
 
 

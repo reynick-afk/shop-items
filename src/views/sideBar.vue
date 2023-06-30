@@ -50,7 +50,7 @@ const ToggleMenu = () => {
 	display: flex;
 	flex-direction: column;
 
-	background-color: white;
+	background-color: rgb(240, 245, 245);
 	color: black;
 
 	width: calc(2rem);
@@ -210,11 +210,8 @@ const ToggleMenu = () => {
 		position: absolute;
 		z-index: 99;
 	}
-
-  // @media print{
-  //    display: none;
-  // }
-
+		
+	
 
 button {
 	cursor: pointer;

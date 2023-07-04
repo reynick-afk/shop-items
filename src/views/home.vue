@@ -134,5 +134,22 @@ export default {
       color: white;
 }
 
+@media screen and (min-width: 320px) and (max-width: 600px) {
+
+
+  .wrapper_box{
+    padding: 0 !important;
+    display: grid;
+  }
+  
+  .forms_info{
+    font-size: 15px;
+  }
+  
+  .SelectedItems{
+    font-size: 10px;
+  }
+  
+  }
 
 </style>

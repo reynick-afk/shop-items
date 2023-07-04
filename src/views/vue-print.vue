@@ -2,7 +2,7 @@
 <template>
   <div id="print">
     <div id="page">
-    <table ref="download_page" class="iksweb">
+    <table class="iksweb" ref="download_page">
 	<tbody>
 		<tr>
 			<td class="catalog main-container" colspan="2">Закупочный лист</td>
@@ -17,11 +17,26 @@
 		</tr>
 		<tr class="normalized_items_tr">
 			<td class="normalized_items_td"> 
-				<div v-for="cover in CoversTdIphone" :key="cover.id" class="td_max_Width">{{ cover }}</div>
+				<div 
+				v-for="(cover, index) in CoversTdIphone" 
+				:key="cover.id" class="td_max_Width" 
+				:class="{ selected: isItemSelected('cover_Iphone', index) }" 
+				@click="toggleItemSelection('cover_Iphone', index)">
+					
+					<span class="selected_items_null">{{ cover }}</span>
+					</div>
 			</td>
 
 			<td class="normalized_items_td"> 
-				<div v-for="glass in GlassTdIphone" :key="glass.id" class="td_max_Width">{{ glass }}</div>
+				<div 
+				v-for="(glass, index) in GlassTdIphone" 
+				:key="glass.id" 
+				class="td_max_Width"
+				:class="{ selected: isItemSelected('glass_Iphone', index) }"
+				@click="toggleItemSelection('glass_Iphone', index)">
+				<span class="selected_items_null">{{ glass }}</span>
+
+				</div>
 			</td>
 		</tr>
 		
@@ -31,10 +46,26 @@
 		
 		<tr class="normalized_items_tr">
 			<td class="normalized_items_td"> 
-				<div v-for="cover in CoversTdRedmi" :key="cover.id" class="td_max_Width">{{ cover }}</div>
+				<div 
+				v-for="(cover, index) in CoversTdRedmi" 
+				:key="cover.id" 
+				class="td_max_Width"
+				:class="{ selected: isItemSelected('cover_Redmi', index) }"
+				@click="toggleItemSelection('cover_Redmi', index)"
+				>
+				<span class="selected_items_null">{{ cover }}</span>
+				</div>
 			</td>
 			<td class="normalized_items_td"> 
-				<div v-for="glass in GlassTdRedmi" :key="glass.id" class="td_max_Width">{{ glass }}</div>
+				<div 
+				v-for="(glass, index) in GlassTdRedmi" 
+				:key="glass.id" 
+				class="td_max_Width"
+				:class="{ selected: isItemSelected('glass_Redmi', index) }"
+				@click="toggleItemSelection('glass_Redmi', index)"
+				>
+					<span class="selected_items_null">{{ glass }}</span>
+					</div>
 			</td>
 		</tr>
 		<tr>
@@ -42,10 +73,27 @@
 		</tr>
 		<tr class="normalized_items_tr">
 			<td class="normalized_items_td"> 
-				<div v-for="cover in CoversTdSamsung" :key="cover.id" class="td_max_Width">{{ cover }}</div>
+				<div 
+				v-for="(cover, index) in CoversTdSamsung" 
+				:key="cover.id" 
+				class="td_max_Width"
+				:class="{ selected: isItemSelected('cover_Samsung_td', index) }"
+				@click="toggleItemSelection('cover_Samsung_td', index)"
+				>
+					<span class="selected_items_null">{{ cover }}</span>
+					</div>
 			</td>
 			<td class="normalized_items_td"> 
-				<div v-for="glass in GlassTdSamsung" :key="glass.id" class="td_max_Width">{{ glass }}</div>
+				<div 
+				v-for="(glass, index) in GlassTdSamsung" 
+				:key="glass.id" 
+				class="td_max_Width"
+				:class="{ selected: isItemSelected('glass_Samsung_td', index) }"
+				@click="toggleItemSelection('glass_Samsung_td', index)"
+				>
+					<span class="selected_items_null">{{ glass }}</span>
+
+				</div>
 			</td>
 		</tr>
 
@@ -55,7 +103,14 @@
 
 		<tr>
 			<td class="normalized_items_td" colspan="2"> 
-				<div v-for="charging in ChargingTdFirst" :key="charging.id" class="td_max_Width">{{ charging }}</div>
+				<div v-for="(charging, index) in ChargingTdFirst"
+				 :key="charging.id"
+				 class="td_max_Width"
+				 :class="{ selected: isItemSelected('ChargingTdFirstSelected', index) }"
+				@click="toggleItemSelection('ChargingTdFirstSelected', index)"
+				>
+				<span class="selected_items_null">{{ charging }}</span>
+				</div>
 			</td>
 
 		</tr>
@@ -66,10 +121,26 @@
 		</tr>
 		<tr>
 			<td class="normalized_items_td"> 
-				<div v-for="charging in ChargingTdThree" :key="charging.id" class="td_max_Width">{{ charging }}</div>
+				<div 
+				v-for="(charging, index) in ChargingTdThree" 
+				:key="charging.id" 
+				class="td_max_Width"
+				:class="{ selected: isItemSelected('ChargingTdThreeSelected', index) }"
+				@click="toggleItemSelection('ChargingTdThreeSelected', index)"
+				>
+					<span class="selected_items_null">{{ charging }}</span>
+					</div>
 			</td>
 			<td class="normalized_items_td"> 
-				<div v-for="wires in WiresTdFirst" :key="wires.id" class="td_max_Width">{{ wires }}</div>
+				<div 
+				v-for="(wires,index) in WiresTdFirst" 
+				:key="wires.id" 
+				class="td_max_Width"
+				:class="{ selected: isItemSelected('WiresTdFirstSelected', index) }"
+				@click="toggleItemSelection('WiresTdFirstSelected', index)"
+				>
+					<span class="selected_items_null">{{ wires }}</span>
+					</div>
 			</td>
 		</tr>
 	
@@ -79,10 +150,26 @@
 		</tr>
 		<tr>
 			<td class="normalized_items_td"> 
-				<div v-for="charging in ChargingTdSecond" :key="charging.id" class="td_max_Width">{{ charging }}</div>
+				<div 
+				v-for="(ChargingTdSecSelected, index) in ChargingTdSecond" 
+				:key="ChargingTdSecSelected.id" 
+				class="td_max_Width"
+				:class="{ selected: isItemSelected('ChargingTdSecSelected', index) }"
+				@click="toggleItemSelection('ChargingTdSecSelected', index)"
+				>
+				<span class="selected_items_null">{{ ChargingTdSecSelected }}</span>
+				</div>
 			</td>
 			<td class="normalized_items_td"> 
-				<div v-for="different in DifferentTdThree" :key="different.id" class="td_max_Width">{{ different }}</div>
+				<div 
+				v-for="(different, index) in DifferentTdThree" 
+				:key="different.id" 
+				class="td_max_Width"
+				:class="{ selected: isItemSelected('DifferentTdThreeSelected', index) }"
+				@click="toggleItemSelection('DifferentTdThreeSelected', index)"
+				>
+				<span class="selected_items_null">{{ different }}</span>
+				</div>
 			</td>
 		</tr>
 		<tr>
@@ -91,10 +178,26 @@
 		</tr>
 		<tr>
 			<td class="normalized_items_td"> 
-				<div v-for="appliances in AppliancesTdFirst" :key="appliances.id" class="td_max_Width">{{ appliances }}</div>
+				<div 
+				v-for="(appliances, index) in AppliancesTdFirst" 
+				:key="appliances.id" 
+				class="td_max_Width"
+				:class="{ selected: isItemSelected('AppliancesTdFirstSelected', index) }"
+				@click="toggleItemSelection('AppliancesTdFirstSelected', index)"
+				>
+					<span class="selected_items_null">{{ appliances }}</span>
+					</div>
 			</td>
 			<td class="normalized_items_td"> 
-				<div v-for="wires in WiresTdThree" :key="wires.id" class="td_max_Width">{{ wires }}</div>
+				<div 
+				v-for="(wires, index) in WiresTdThree" 
+				:key="wires.id" 
+				class="td_max_Width"
+				:class="{ selected: isItemSelected('WiresTdThreeSelected', index) }"
+				@click="toggleItemSelection('WiresTdThreeSelected', index)"
+				>
+					<span class="selected_items_null">{{ wires }}</span>
+				</div>
 			</td>
 		</tr>
 		
@@ -104,10 +207,26 @@
 		</tr>
 		<tr>
 			<td class="normalized_items_td"> 
-				<div v-for="appliances in AppliancesTdSecond" :key="appliances.id" class="td_max_Width">{{ appliances }}</div>
+				<div 
+				v-for="(appliances, index) in AppliancesTdSecond" 
+				:key="appliances.id" 
+				class="td_max_Width"
+				:class="{ selected: isItemSelected('AppliancesTdSecondSelected', index) }"
+				@click="toggleItemSelection('AppliancesTdSecondSelected', index)"
+				>
+				<span class="selected_items_null">{{ appliances }}</span>
+				</div>
 			</td>
 			<td class="normalized_items_td"> 
-				<div v-for="male in MaleTdSecond" :key="male.id" class="td_max_Width">{{ male }}</div>
+				<div 
+				v-for="(male, index) in MaleTdSecond" 
+				:key="male.id" 
+				class="td_max_Width"
+				:class="{ selected: isItemSelected('MaleTdSecondSelected', index) }"
+				@click="toggleItemSelection('MaleTdSecondSelected', index)"
+				>
+				<span class="selected_items_null">{{ male }}</span>
+				</div>
 			</td>
 		</tr>
 		
@@ -117,10 +236,26 @@
 		</tr>
 		<tr>
 			<td class="normalized_items_td"> 
-				<div v-for="male in MaleTdFirst" :key="male.id" class="td_max_Width">{{ male }}</div>
+				<div 
+				v-for="(male, index) in MaleTdFirst" 
+				:key="male.id" 
+				class="td_max_Width"
+				:class="{ selected: isItemSelected('MaleTdFirstSelected', index) }"
+				@click="toggleItemSelection('MaleTdFirstSelected', index)"
+				>
+				<span class="selected_items_null">{{ male }}</span>
+				</div>
 			</td>
 			<td class="normalized_items_td"> 
-				<div v-for="periphery in PeripheryTdSecond" :key="periphery.id" class="td_max_Width">{{ periphery }}</div>
+				<div 
+				v-for="(periphery, index) in PeripheryTdSecond" 
+				:key="periphery.id" 
+				class="td_max_Width"
+				:class="{ selected: isItemSelected('PeripheryTdSecondSelected', index) }"
+				@click="toggleItemSelection('PeripheryTdSecondSelected', index)"
+				>
+				<span class="selected_items_null">{{ periphery }}</span>
+				</div>
 			</td>
 		</tr>
 		<tr>
@@ -129,10 +264,26 @@
 		</tr>
 		<tr>
 			<td class="normalized_items_td"> 
-				<div v-for="periphery in PeripheryTdFirst" :key="periphery.id" class="td_max_Width">{{ periphery }}</div>
+				<div 
+				v-for="(periphery, index) in PeripheryTdFirst" 
+				:key="periphery.id" 
+				class="td_max_Width"
+				:class="{ selected: isItemSelected('PeripheryTdFirstSelected', index) }"
+				@click="toggleItemSelection('PeripheryTdFirstSelected', index)"
+				>
+				<span class="selected_items_null">{{ periphery }}</span>
+				</div>
 			</td>
 			<td class="normalized_items_td"> 
-				<div v-for="different in DifferentTdSecond" :key="different.id" class="td_max_Width">{{ different }}</div>
+				<div 
+				v-for="(different, index) in DifferentTdSecond" 
+				:key="different.id" 
+				class="td_max_Width"
+				:class="{ selected: isItemSelected('DifferentTdSecondSelected', index) }"
+				@click="toggleItemSelection('DifferentTdSecondSelected', index)"
+				>
+				<span class="selected_items_null">{{ different }}</span>
+				</div>
 			</td>
 		</tr>
 		<tr>
@@ -141,10 +292,26 @@
 		</tr>
 		<tr>
 			<td class="normalized_items_td"> 
-				<div v-for="appliances in AppliancesTdThree" :key="appliances.id" class="td_max_Width">{{ appliances }}</div>
+				<div 
+				v-for="(appliances, index) in AppliancesTdThree" 
+				:key="appliances.id" 
+				class="td_max_Width"
+				:class="{ selected: isItemSelected('AppliancesTdThreeSelected', index) }"
+				@click="toggleItemSelection('AppliancesTdThreeSelected', index)"
+				>
+				<span class="selected_items_null">{{ appliances }}</span>
+				</div>
 			</td>
 			<td class="normalized_items_td"> 
-				<div v-for="wires in WiresTdSecond" :key="wires.id" class="td_max_Width">{{ wires }}</div>
+				<div 
+				v-for="(wires, index) in WiresTdSecond" 
+				:key="wires.id" 
+				class="td_max_Width"
+				:class="{ selected: isItemSelected('WiresTdSecondSelected', index) }"
+				@click="toggleItemSelection('WiresTdSecondSelected', index)"
+				>
+				<span class="selected_items_null">{{ wires }}</span>
+				</div>
 			</td>
 		</tr>
 		
@@ -157,10 +324,26 @@
 
 		<tr>
 			<td class="normalized_items_td"> 
-				<div v-for="periphery in PeripheryTdThree" :key="periphery.id" class="td_max_Width">{{ periphery }}</div>
+				<div 
+				v-for="(periphery, index) in PeripheryTdThree" 
+				:key="periphery.id" 
+				:class="{ selected: isItemSelected('periphery_Three', index) }" 
+				class="td_max_Width" 
+				@click="toggleItemSelection('periphery_Three', index)"
+				>
+					<span class="selected_items_null">{{ periphery }}</span>
+			</div>
 			</td>
 			<td class="normalized_items_td"> 
-				<div v-for="male in MaleTdThree" :key="male.id" class="td_max_Width">{{ male }}</div>
+				<div 
+				v-for="(male, index) in MaleTdThree" 
+				:key="male.id" 
+				:class="{ selected: isItemSelected('male_Three', index) }" 
+				class="td_max_Width" 
+				@click="toggleItemSelection('male_Three', index)"
+				>
+				<span class="selected_items_null">{{ male }}</span>
+			</div>
 			</td>
 			
 		</tr>
@@ -170,16 +353,25 @@
 		</tr>
 		<tr>
 			<td class="normalized_items_td" colspan="2"> 
-				<div v-for="different in DifferentTdFirst" :key="different.id" class="td_max_Width">{{ different }}</div>
+				<div 
+				v-for="(different, index) in DifferentTdFirst" 
+				:key="different.id" 
+				class="td_max_Width"
+				:class="{ selected: isItemSelected('DifferentTdFirstSelected', index) }"
+				@click="toggleItemSelection('DifferentTdFirstSelected', index)"
+				>
+				<span class="selected_items_null">{{ different }}</span>
+				</div>
 			</td>
 		</tr>
 	</tbody>
 	
 </table>
-<div>
+<div class="button_list_all">
 <button class="printButton green" @click="printAll">Расспечатать</button>
 <button class="printButton" @click="exportToPDF">Скачать</button>
 <button class="printButton red" @click="deleteAll">Удалить все</button>
+<button class="printButton pre-red" @click="deleteSelectedItems">Удалить выбранные</button>
 </div>
 </div>
 </div>
@@ -190,6 +382,9 @@
 <script>
 import { mapGetters } from 'vuex';
 import html2pdf from 'html2pdf.js'
+
+
+
 
 export default {
 
@@ -226,10 +421,57 @@ export default {
 		ChargingTdFirst: [],
 		ChargingTdSecond: [],
 		ChargingTdThree: [],
+
+		itemSelections: {
+
+		periphery_Three: {},
+        male_Three: {},
+		
+		cover_Iphone: {},
+		glass_Iphone: {},
+		
+		cover_Redmi: {},
+		glass_Redmi: {},
+		
+		cover_Samsung_td: {},
+		glass_Samsung_td: {},
+
+		ChargingTdFirstSelected: {},
+		
+		ChargingTdThreeSelected: {},
+		ChargingTdSecSelected: {},
+
+		DifferentTdThreeSelected: {},
+		WiresTdFirstSelected:{},
+		
+		AppliancesTdFirstSelected:{},
+		WiresTdThreeSelected:{},
+
+		AppliancesTdSecondSelected:{},
+		MaleTdSecondSelected:{},
+
+		MaleTdFirstSelected:{},
+		PeripheryTdSecondSelected:{},
+
+		PeripheryTdFirstSelected:{},
+		DifferentTdSecondSelected:{},
+
+		AppliancesTdThreeSelected:{},
+		WiresTdSecondSelected:{},
+
+		DifferentTdFirstSelected:{}
+
+      },
     }
   },
 
  created() {
+
+		// LOCALSTORAGE SELECTED ITEMS
+	const savedSelections = localStorage.getItem('itemSelectionsItems');
+    if (savedSelections) {
+      this.itemSelections = JSON.parse(savedSelections);
+    }
 
 
 		// COVERS TELEPHONE
@@ -420,22 +662,67 @@ export default {
 
 
 	methods:{
+	
+	isItemSelected(type, index) {
+  if (this.itemSelections[type] && this.itemSelections[type][index]) {
+    return this.itemSelections[type][index];
+  }
+  return false;
+},
+    
+	
+	toggleItemSelection(type, index) {
+      this.$set(this.itemSelections[type], index, !this.itemSelections[type][index]);
+	this.saveSelectionsToLocal();
+    
+	
+	
+	},
+	
+	
+	
+	
+	saveSelectionsToLocal() {
+      localStorage.setItem('itemSelectionsItems', JSON.stringify(this.itemSelections));
+    },
+	
+	
+	
+	
+	deleteSelectedItems(){
+		
+	for (let key in this.itemSelections) {
+    this.itemSelections[key] = {};}
+
+		localStorage.removeItem("itemSelectionsItems")
+	},
+
+
 		printAll(){
       window.print()
     },
+
+	generateRandomNumber() {
+		let randomNumber = Math.floor(Math.random() * 100000);
+  if (randomNumber < 10000) {
+    randomNumber = '0' + randomNumber; // Добавляем ведущий ноль, если число имеет меньше пяти цифр
+  }
+  return randomNumber.toString().substring(0, 5); // Возвращаем первые пять символов числа
+	},
 	
 	exportToPDF() {
       const element = this.$refs.download_page
-
+		let randomName = this.generateRandomNumber()
       html2pdf()
         .set({
-          filename: 'export.pdf',
-          html2canvas: { scale: 2 },
+			margin: 4,
+          filename: `${randomName}.pdf`,
+          html2canvas: { scale: 5 },
           pagebreak: { mode: ['avoid-all', 'css', 'legacy'] },
           jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
         })
         .from(element)
-        .save('export.pdf')
+        .save(`${randomName}.pdf`)
     },
 
 	deleteAll(){

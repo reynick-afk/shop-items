@@ -1,7 +1,4 @@
-.home{
-    max-height: 1000vh;
-    max-width: 1000vw;
-  };
+
 
   .header_home_page{
     display: flex;
@@ -169,12 +166,16 @@ input[type="text"]{
     margin-left: 100px;
   }
   .selected-items_wrap{
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
   }
   .forms_info{
     margin-top: 20px;
     font-size: 20px;
     font-weight: bolder;
+  }
+
+  .li-items_wrap{
+    grid-template-columns: repeat(5, 30px);
   }
 }
 

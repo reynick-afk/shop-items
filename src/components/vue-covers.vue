@@ -469,9 +469,10 @@ filteredModelsRedmi() {
 }
 
 @media screen and (min-width: 320px) and (max-width: 600px) {
-  .covers_forms {
-    grid-template-columns: repeat(1, 1fr);
-    font-size: 10px;
+  
+
+  .colums_flex{
+    max-width: 230px;
   }
 }
 </style>

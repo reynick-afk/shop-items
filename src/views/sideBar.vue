@@ -21,7 +21,7 @@
 				<span class="material-icons">description</span>
 				<span class="text">Лист Закупа</span>
 			</router-link>
-			<router-link to="/team" class="button">
+			<router-link to="/todo" class="button">
 				<span class="material-icons">add_circle</span>
 				<span class="text">Планировщик</span>
 			</router-link>

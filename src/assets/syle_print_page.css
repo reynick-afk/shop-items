@@ -18,7 +18,10 @@
 	align-items: center;
 }
 
-
+.selected{
+  background: red;
+  color: white;
+}
 
 table.iksweb{
 	text-decoration: none;
@@ -30,17 +33,27 @@ table.iksweb{
 }
 
 table.iksweb td.catalog{font-size:12px;}
-table.iksweb th{font-weight:normal;font-size:14px; color:#ffffff;background-color:#354251;}
-table.iksweb td{font-size:10px;color:#354251;}
-table.iksweb td,table.iksweb th{white-space:normal;padding:8px 3px;vertical-align: middle;border: 1px solid #354251;}
+table.iksweb th{font-weight:normal;font-size:14px; color:#ffffff;background-color:#0f1214;}
+table.iksweb td{font-size:10px;color:#0f1214;}
+table.iksweb td,table.iksweb th{white-space:normal;padding:8px 3px;vertical-align: middle;border: 1px solid #0f1214;}
 table.iksweb tr:hover{background-color:#f9fafb}
-table.iksweb tr:hover td{color:#354251;cursor:default;}
+table.iksweb tr:hover td{color:#0f1214;cursor:default;}
+
+
+.selected_items_null{
+  cursor: pointer;
+}
 
 
 
 .td_max_Width{
-	margin-right: 5px;
-	display: inline-block;
+  margin-top: 4px;
+  margin-bottom: 8px;
+  margin-right: 5px;
+  display: inline-block;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 10px;
+  padding: 6px;
 }
 
 .catalog{
@@ -67,6 +80,18 @@ table.iksweb tr:hover td{color:#354251;cursor:default;}
   background-color: red;
 }
 
+.pre-red{
+  background-color: rgb(44, 20, 20);
+}
+
+.button_list_all{
+  display: flex;
+  align-items: center;
+
+}
+
+
+
 @media print{
     * {
         margin: 0;
@@ -89,6 +114,15 @@ table.iksweb tr:hover td{color:#354251;cursor:default;}
 	.printButton{
 		display: none;
 	}
+  .td_max_Width{
+    margin-top: 4px;
+    margin-bottom: 2px;
+    margin-right: 2px;
+    display: inline-block;
+    border-right: 1px solid rgb(0, 0, 0);
+    border-radius: 0px ;
+    padding: 1px !important;
+  }
 
 	#print {
         width: 210mm;
@@ -114,16 +148,23 @@ table.iksweb tr:hover td{color:#354251;cursor:default;}
 		padding: 2px;
 	}
 
+  .button_list_all{
+    flex-direction: column;
+  }
+
 }
 
 @media screen and (min-width: 320px) and (max-width: 1440px) {
 	#page{
-    width: 50%;
+    width: 80%;
+    padding-left: 100px;
   }
 
   .td_max_Width{
     font-size: 10px;
     font-weight: bolder;
   }
+
+
 
 }

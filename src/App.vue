@@ -21,7 +21,7 @@
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+  color: #0f1214;
   display: grid;
   grid-template-columns: auto 1fr;
   background:rgb(240, 245, 245);

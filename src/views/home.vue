@@ -3,11 +3,10 @@
     <div class="header_home_page">
  
    <span class="forms_info">Формы заявок магазина Витязь</span>
-   <span class="forms_info">Добавьте товар в списки для закупа</span>
     </div>
 
   <div class="wrapper_box">
-  
+    
   <CoversItems class="hr_line"/>
     
   <SafetyGlass class="hr_line"/>
@@ -32,6 +31,8 @@
 
   </div>
 </template>
+
+
 
 <script>
 // @ is an alias to /src
@@ -64,13 +65,17 @@ export default {
 <style lang="scss" scoped>
     $font_size: 30px;
 
+.view_components{
+  height: 100px;
+}
+
 
   .home{
     text-align: center;
   }
 
   .wrapper_box{
-    padding: 0 5% 0 5%;
+    padding: 0 10% 0 10%;
     display: grid;
     grid-template-columns: repeat(1, auto);
   }
@@ -112,6 +117,7 @@ export default {
     border: 1px solid rgb(110, 110, 110);
     box-shadow: 10px 10px 10px rgba(0,0,0,.15);
     padding: 2%;
+    border-radius: 20px;
   }
 
 
@@ -144,6 +150,8 @@ export default {
   
   .forms_info{
     font-size: 15px;
+    margin-right: 20px;
+    margin-left: 20px;
   }
   
   .SelectedItems{

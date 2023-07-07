@@ -1,8 +1,8 @@
 <!--  -->
 <template>
-  <div class="forms">
-    <span class="covers">Чехлы на телефон</span>
-    <div class="covers_forms">
+  <div class="forms" :class="{ active: isActive}">
+    <span class="covers" @click="ToggleShowComponents">Чехлы на телефон</span>
+    <div class="covers_forms" v-show="ViewComponents">
       <!-- Samsung -->
       <div class="colums_flex">
         <span>Samsung</span>
@@ -25,11 +25,10 @@
             Убрать
           </button>
         </div>
-          <div >
+
           <ul class="li-items_wrap li_style_none" v-if="filteredModelsSamsung.length && coversSamsung.trim() !== ''">
               <li class="SelectedItems" v-for="model in filteredModelsSamsung" :key="model" @click="selectModelSamsung(model)">{{ model }}</li>
             </ul>
-          </div>
 
         <div v-if="isDublicateCartFirst">
           Дубликат
@@ -170,11 +169,13 @@
   </div>
 </template>
 
+
 <script>
 import { mapMutations } from "vuex";
 import shopDataSamsung from "../data/shopSamsung.json";
 import shopDataIphone from "../data/shopIphone.json";
 import shopDataRedmi from "../data/shopRedmi.json";
+
 
 export default {
   name: "CoversItems",
@@ -199,10 +200,10 @@ export default {
 
       allItems: [],
       selectedModelIndex: {
-        samsung: -1,
-        // Add other brands' selectedModelIndex here if needed
+      samsung: -1,
       },
-    
+      ViewComponents: false,
+      isActive: false,
     
     };
   },
@@ -234,6 +235,14 @@ export default {
     ...mapMutations(["SET_COVER_LIST_SAMSUNG"]),
     ...mapMutations(["SET_COVER_LIST_IPHONE"]),
     ...mapMutations(["SET_COVER_LIST_REDMI"]),
+
+
+    // TOGGLE ViewComponents
+
+    ToggleShowComponents(){
+      this.ViewComponents = !this.ViewComponents
+      this.isActive = !this.isActive
+    },
 
     /// ADD ELEMENTS
     AddToCartSamsung() {
@@ -451,6 +460,12 @@ filteredModelsRedmi() {
 </script>
 
 <style lang="scss">
+
+.view_components{
+  max-height: 100px;
+  background: black;
+}
+
 .selected-items_wrap {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -460,7 +475,7 @@ filteredModelsRedmi() {
 .SelectedItems {
   padding: 5px 0px 5px;
   cursor: pointer;
- border-bottom: 5px solid rgb(9, 206, 42);
+ border-bottom: 5px solid #0c3eaaec;
 }
 .SelectedItems:hover {
   border-bottom: 5px solid rgb(206, 9, 9);
@@ -473,6 +488,8 @@ filteredModelsRedmi() {
 
   .colums_flex{
     max-width: 230px;
+        align-self: center;
+  justify-self: center;
   }
 }
 </style>

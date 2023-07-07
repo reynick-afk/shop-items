@@ -1,7 +1,7 @@
 <template>
-  <div class="forms">
-    <span class="covers">Зарядные устройства</span>
-    <div class="covers_forms">
+  <div class="forms" :class="{ active: isActive}">
+    <span class="covers" @click="ToggleShowComponents">Зарядные устройства</span>
+    <div class="covers_forms" v-show="ViewComponents">
      
       <!-- First -->
       <div class="colums_flex">
@@ -173,7 +173,10 @@ export default {
 
       isDublicateCartFirst: false,
       isDublicateCartSecond: false,
-      isDublicateCartThree: false
+      isDublicateCartThree: false,
+
+      ViewComponents: false,
+      isActive: false,
     };
   },
 
@@ -205,8 +208,15 @@ export default {
     ...mapMutations(["SET_CHARGING_LIST_SECOND"]),
     ...mapMutations(["SET_CHARGING_LIST_THREE"]),
 
-    /// ADD ELEMENTS
+  // TOGGLE ViewComponents
 
+    ToggleShowComponents(){
+      this.ViewComponents = !this.ViewComponents;
+      this.isActive = !this.isActive
+    },
+
+
+    /// ADD ELEMENTS
 
     AddToCartFirst() {
       let charging = this.chargingFirst;

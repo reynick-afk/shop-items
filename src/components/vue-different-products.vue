@@ -1,7 +1,7 @@
 <template>
   <div class="forms">
-    <span class="covers">Разные товары</span>
-    <div class="covers_forms">
+    <span class="covers" @click="ToggleShowComponents">Разные товары</span>
+    <div class="covers_forms" v-show="ViewComponents">
      
       <!-- First -->
       <div class="colums_flex">
@@ -173,7 +173,9 @@ export default {
 
       isDublicateCartFirst: false,
       isDublicateCartSecond: false,
-      isDublicateCartThree: false
+      isDublicateCartThree: false,
+
+      ViewComponents: false,
     };
   },
 
@@ -204,6 +206,14 @@ export default {
     ...mapMutations(["SET_DIFFERENT_LIST_FIRST"]),
     ...mapMutations(["SET_DIFFERENT_LIST_SECOND"]),
     ...mapMutations(["SET_DIFFERENT_LIST_THREE"]),
+
+// TOGGLE ViewComponents
+
+    ToggleShowComponents(){
+      this.ViewComponents = !this.ViewComponents
+    },
+
+
 
     /// ADD ELEMENTS
 

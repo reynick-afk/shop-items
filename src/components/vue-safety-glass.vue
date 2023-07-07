@@ -1,8 +1,8 @@
 
 <template>
-  <div class="forms">
-    <span class="covers">Защитное стекло</span>
-    <div class="covers_forms">
+  <div class="forms" :class="{ active: isActive}">
+    <span class="covers" @click="ToggleShowComponents">Защитное стекло</span>
+    <div class="covers_forms" v-show="ViewComponents">
      
       <!-- Samsung -->
       <div class="colums_flex">
@@ -194,8 +194,11 @@ export default {
        allItems: [],
       selectedModelIndex: {
         samsung: -1,
-        // Add other brands' selectedModelIndex here if needed
+   
       },
+
+      ViewComponents: false,
+      isActive: false,
     };
   },
 
@@ -226,6 +229,14 @@ export default {
     ...mapMutations(["SET_GLASS_LIST_SAMSUNG"]),
     ...mapMutations(["SET_GLASS_LIST_IPHONE"]),
     ...mapMutations(["SET_GLASS_LIST_REDMI"]),
+
+// TOGGLE ViewComponents
+
+    ToggleShowComponents(){
+      this.ViewComponents = !this.ViewComponents;
+      this.isActive = !this.isActive
+    },
+
 
     /// ADD ELEMENTS
     AddToCartSamsung() {

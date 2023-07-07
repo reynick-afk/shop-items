@@ -153,7 +153,7 @@ const ToggleMenu = () => {
 
 			&.router-link-exact-active {
 				background-color: rgba(77, 77, 77, 0.336);
-				border-right: 5px solid rgb(9, 206, 42);
+				border-right: 5px solid #0c3eaaec;
 
 				.material-icons, .text {
 					color: black;

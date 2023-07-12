@@ -1,105 +1,79 @@
-<!--  -->
 <template>
   <div class="wrapList">
-   
-   
     <div class="todoList">
-        <span class="todoListAbout">TO-DO LIST</span>
-            <div class="form__group field">
-                <input class="form__field" placeholder="Новая задача" name="name" id='name' required />
-                <label for="name" class="form__label">Новая задача</label>
-            </div>
+      <span class="todoListAbout">TO-DO LIST</span>
+      <div class="form__group field">
+        <input
+          class="form__field"
+          placeholder="Новая задача"
+          name="name"
+          id="name"
+          required
+          v-model="tasksInput"
+        />
+        <label for="name" class="form__label">Новая задача</label>
+      </div>
 
-        
-        <div class="todoListRadio">
-            <span class="radio_warn">Срочно</span>
-            <span class="radio_easy">Не срочно</span>
-        </div>
-        <button class="button_main_todoList">Добавить</button>
-        </div>
-        
-        
-        <div class="task_wrap">
-            <div class="newTask">
-                <span class="TaskAbout">Задача № 1 </span>
-                <span>Сделать что-то</span>
-                <button  class="button_main_todoTask">Удалить задачу</button>
-            </div>
-            <div class="newTask">
-                <span class="TaskAbout">Задача № 2 </span>
-                <span>Сделать что-то</span>
-                <button  class="button_main_todoTask">Удалить задачу</button>
-            </div>
-
-            <div class="newTask">
-                <span class="TaskAbout">Задача № 3 </span>
-                <span>Сделать что-то</span>
-                <button  class="button_main_todoTask">Удалить задачу</button>
-            </div>
-            <div class="newTask">
-                <span class="TaskAbout">Задача № 4 </span>
-                <span>Сделать что-то</span>
-                <button  class="button_main_todoTask">Удалить задачу</button>
-            </div>
-            <div class="newTask">
-                <span class="TaskAbout">Задача № 1 </span>
-                <span>Сделать что-то</span>
-                <button  class="button_main_todoTask">Удалить задачу</button>
-            </div>
-            <div class="newTask">
-                <span class="TaskAbout">Задача № 1 </span>
-                <span>Сделать что-то</span>
-                <button  class="button_main_todoTask">Удалить задачу</button>
-            </div>
-            <div class="newTask">
-                <span class="TaskAbout">Задача № 1 </span>
-                <span>Сделать что-то</span>
-                <button  class="button_main_todoTask">Удалить задачу</button>
-            </div>
-            <div class="newTask">
-                <span class="TaskAbout">Задача № 1 </span>
-                <span>Сделать что-то</span>
-                <button  class="button_main_todoTask">Удалить задачу</button>
-            </div>
-            <div class="newTask">
-                <span class="TaskAbout">Задача № 1 </span>
-                <span>Сделать что-то</span>
-                <button  class="button_main_todoTask">Удалить задачу</button>
-            </div>
-            <div class="newTask">
-                <span class="TaskAbout">Задача № 1 </span>
-                <span>Сделать что-то</span>
-                <button  class="button_main_todoTask">Удалить задачу</button>
-            </div>
-            <div class="newTask">
-                <span class="TaskAbout">Задача № 1 </span>
-                <span>Сделать что-то</span>
-                <button  class="button_main_todoTask">Удалить задачу</button>
-            </div>
-            <div class="newTask">
-                <span class="TaskAbout">Задача № 1 </span>
-                <span>Сделать что-то</span>
-                <button  class="button_main_todoTask">Удалить задачу</button>
-            </div>
-            <div class="newTask">
-                <span class="TaskAbout">Задача № 1 </span>
-                <span>Сделать что-то Сделать что-то Сделать что-то Сделать что-тоСделать что-то Сделать что-то Сделать что-то Сделать что-то</span>
-                <button  class="button_main_todoTask">Удалить задачу</button>
-            </div>
-        </div>
-    
-    
+   
+      <button class="button_main_todoList" @click="addItem()">Добавить</button>
     </div>
 
+    <div class="task_wrap">
+      <div
+        v-for="(task, index) in tasks"
+        :key="index"
+        class="newTask"
+      >
+        <span class="TaskAbout">Задача № {{ index + 1 }}</span>
+        <span>{{ task }}</span>
+        <span>{{ getFormattedDate() }}</span>
+        <Timer />
+        <button class="button_main_todoTask red" @click="() => deleteItem(index)">Удалить задачу</button>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
+import Timer from '../components/vue-timer.vue';
+
 export default {
-  data () {
+  components: {
+    Timer
+  },
+  data() {
     return {
-    }
-  }
-}
+      tasksInput: '',
+      tasks: [],
+      timerActive: [],
+
+
+    };
+  },
+  methods: {
+    addItem() {
+      this.tasks.push(this.tasksInput);
+      this.tasksInput = '';
+      this.timerActive.push(false);
+     
+    },
+    deleteItem(index) {
+      this.tasks.splice(index, 1);
+      this.timerActive.splice(index, 1);
+    },
+    getFormattedDate() {
+      const date = new Date();
+      return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+    },
+    fastTask() {
+      this.fastTasks = !this.fastTasks;
+    },
+  
+  },
+
+
+
+};
 </script>
 
 <style lang="scss">
@@ -178,7 +152,6 @@ $gray: #9b9b9b;
 
 .wrapList{
     display: grid;
-    grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 1fr;
 }
 
@@ -255,29 +228,7 @@ $gray: #9b9b9b;
     margin-right: 20px;
 }
 
-.radio_warn:hover{
-    border: #ff0202ec 1px solid;
-}
-
-.radio_easy:hover{
-    border: #ff0202ec 1px solid;
-}
-
-.radio_easy{
-    padding: 20px 20px 20px 20px;
-    cursor: pointer;
-    border: #0c3eaaec 1px solid;
-    border-radius: 30px;
-    margin-right: 20px;
-}
-
-
-
-
-
-
 .newTask{
-    width: 50%;
     display: flex;
     flex-direction: column;
     margin-top: 20px;
@@ -297,5 +248,9 @@ $gray: #9b9b9b;
     font-size: 40px;
 }
 
+
+.red{
+    background: red;
+}
 
 </style>

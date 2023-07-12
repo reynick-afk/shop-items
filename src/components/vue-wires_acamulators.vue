@@ -1,5 +1,5 @@
 <template>
-  <div class="forms" :class="{ active: isActive}">
+  <div class="forms" :class="{ active: isActive}" ref="blockToAdjustWires">
     <span class="covers" @click="ToggleShowComponents">Провода, переходники, Аккамуляторы, Батареи</span>
     <div class="covers_forms" v-show="ViewComponents">
      
@@ -213,7 +213,12 @@ export default {
 
     ToggleShowComponents(){
       this.ViewComponents = !this.ViewComponents;
-      this.isActive = !this.isActive
+      this.isActive = !this.isActive;
+
+      const block = this.$refs.blockToAdjustWires;
+      if(block){
+        block.scrollIntoView({ behavior: "smooth", block: "end", inline: 'end'});
+      }
     },
 
     /// ADD ELEMENTS

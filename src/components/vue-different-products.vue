@@ -1,5 +1,5 @@
 <template>
-  <div class="forms">
+  <div class="forms" :class="{ active: isActive}" ref="blockToAdjust">
     <span class="covers" @click="ToggleShowComponents">Разные товары</span>
     <div class="covers_forms" v-show="ViewComponents">
      
@@ -176,6 +176,7 @@ export default {
       isDublicateCartThree: false,
 
       ViewComponents: false,
+      isActive: false,
     };
   },
 
@@ -210,7 +211,18 @@ export default {
 // TOGGLE ViewComponents
 
     ToggleShowComponents(){
-      this.ViewComponents = !this.ViewComponents
+      this.ViewComponents = !this.ViewComponents;
+      this.isActive = !this.isActive;
+
+      const block = this.$refs.blockToAdjust; // Получаем ссылку на блок
+
+      if (block) {
+        if(this.isActive === true){
+          block.scrollIntoView({ behavior: "smooth", block: "center", inline: 'center'});
+        }
+        // Прокручиваем страницу к блоку с использованием плавной анимации
+        // Можешь изменить параметры scrollIntoView для настройки поведения прокрутки
+      }
     },
 
 

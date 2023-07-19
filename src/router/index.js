@@ -31,6 +31,11 @@ const routes = [
     name: 'sideBar',
     component: () => import(/* webpackChunkName: "about" */ '../views/sideBar.vue')
   },
+  {
+    path: '/analitics',
+    name: 'analitics',
+    component: () => import(/* webpackChunkName: "about" */ '../views/analitics.vue')
+  },
 ]
 
 const router = new VueRouter({

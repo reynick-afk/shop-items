@@ -25,9 +25,9 @@
 				<span class="material-icons">add_circle</span>
 				<span class="text">Планировщик</span>
 			</router-link>
-			<router-link to="/contact" class="button">
-				<span class="material-icons">email</span>
-				<span class="text">Contact</span>
+			<router-link to="/analitics" class="button">
+				<span class="material-icons">star</span>
+				<span class="text">Аналитика</span>
 			</router-link>
 		</div>
 	</div>
